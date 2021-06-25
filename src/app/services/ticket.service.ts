@@ -32,6 +32,13 @@ export class TicketService {
       availableTickets: 5,
       price: 3500,
     },
+    {
+      title: 'Platinum Ticket',
+      deadline: '7 days',
+      description: '',
+      availableTickets: 10,
+      price: 8000,
+    },
   ];
 
   total = 0;
@@ -43,6 +50,7 @@ export class TicketService {
   waitListItems = [];
   confirmedWaitList = [];
   selectedDonation;
+  defaultTicketList = [];
 
   public addTicket(quantity: number, ticket: Ticket): void {
     if (ticket.availableTickets >= quantity) {
@@ -173,6 +181,7 @@ export class TicketService {
   }
 
   retrieveTicket(): void {
+    this.defaultTicketList = this.tickets;
     const tickets = localStorage.getItem('tickets');
     if (tickets) {
       this.selectedTickets = JSON.parse(tickets);
@@ -188,6 +197,7 @@ export class TicketService {
     const eventTickets = localStorage.getItem('eventTickets');
     if (eventTickets) {
       this.tickets = JSON.parse(eventTickets);
+      this.defaultTicketList = this.tickets;
     }
     this.getTotal();
   }
@@ -209,5 +219,9 @@ export class TicketService {
   addNewTicket(newValue: Ticket): void {
     this.tickets.push(newValue);
     localStorage.setItem('eventTickets', JSON.stringify(this.tickets));
+  }
+
+  revertTicket() {
+    this.tickets = this.defaultTicketList;
   }
 }

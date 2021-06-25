@@ -2,7 +2,20 @@
   <h4 class="module-header">Manage Tickets</h4>
   <div class="table-card fade-in" *ngIf="showTable">
     <button class="edit-button new" (click)="add()">Add New Ticket</button>
-    <table class="styled-table">
+
+    <div class="row">
+      <div class="col-100 search">
+        <input
+          type="text"
+          placeholder="Search Ticket"
+          (keyup)="searchTable($event.target.value)"
+        />
+      </div>
+    </div>
+    <table
+      class="styled-table fade-in"
+      *ngIf="ticketService.tickets.length > 0; else noTickets"
+    >
       <thead>
         <tr>
           <th>Name</th>
@@ -34,6 +47,12 @@
         </tr>
       </tbody>
     </table>
+    <ng-template #noTickets>
+      <div class="container placeholder-container fade-in">
+        <img class="placeholder" src="assets/images/empty-box.png" />
+        <h2>Sorry, No ticket matched what you typed.</h2>
+      </div>
+    </ng-template>
   </div>
 
   <form [formGroup]="ticketForm" *ngIf="!showTable">

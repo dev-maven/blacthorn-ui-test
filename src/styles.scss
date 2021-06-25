@@ -185,7 +185,7 @@ span.custom-donation:before {
       padding: 5px 10px;
       border-radius: 5px;
       border: 1px solid transparent;
-      background: #399f48;
+      background: #0EB58A;
       cursor: pointer;
       color: white;
       font-size: 13px;
@@ -406,6 +406,27 @@ span.custom-donation:before {
 .card-container .card:not(:last-child) {
   margin-right: 0;
 }
+
+    .placeholder-container {
+      text-align: center;
+
+      img {
+        width: 20rem;
+        height: 20rem;
+      }
+
+      .buyTicket {
+        height: 40px;
+        background: #0EB58A;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 40px;
+        color: #FFFFFF;
+        cursor: pointer;
+      }
+    }
 
   .form-card {
 

@@ -9,6 +9,18 @@
     display: block;
 }
 
+.search {
+      input[type=text] {
+        width: 20rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        resize: vertical;
+        display: block;
+        margin: auto;
+      }
+}
+
  .styled-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -56,8 +68,8 @@ td:first-child {
 
 .table-edit {
   background: transparent;
-  border: 1px solid #399f48;
-  color: #399f48;
+  border: 1px solid #0EB58A;
+  color: #0EB58A;
   background: transparent;
 }
 

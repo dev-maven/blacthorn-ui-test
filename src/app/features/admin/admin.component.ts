@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ticket } from 'src/app/models/ticket';
 import { TicketService } from 'src/app/services/ticket.service';
@@ -8,7 +14,7 @@ import { TicketService } from 'src/app/services/ticket.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   displayedColumns = [
     'name',
     'price',
@@ -89,5 +95,34 @@ export class AdminComponent implements OnInit {
     this.ticketForm.patchValue({
       availableTickets: value,
     });
+  }
+
+  searchTable(filterValue: string): void {
+    let newTickets = [];
+
+    if (filterValue) {
+      this.ticketService.tickets.forEach((obj) => {
+        Object.values(obj).forEach((value) => {
+          if (
+            value.toString().toLowerCase().includes(filterValue.toLowerCase())
+          ) {
+            const index = newTickets.findIndex(
+              (ticket) => ticket.title === obj.title
+            );
+            if (index < 0) {
+              newTickets.push(obj);
+            }
+          }
+        });
+      });
+    } else {
+      newTickets = this.ticketService.defaultTicketList;
+    }
+
+    this.ticketService.tickets = newTickets;
+  }
+
+  ngOnDestroy(): void {
+    this.ticketService.revertTicket();
   }
 }

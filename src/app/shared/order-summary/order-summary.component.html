@@ -46,6 +46,7 @@
         <span class="align-right"
           >{{ ticket.price | currency }}
           <span
+            *ngIf="!checkout"
             class="remove"
             (click)="ticketService.removeTicket(ticket, 'confirmedWaitList')"
             >X</span
