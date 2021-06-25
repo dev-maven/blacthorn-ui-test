@@ -1,6 +1,5 @@
-import { PlatformLocation } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router, Event } from '@angular/router';
+import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { TicketService } from './services/ticket.service';
 
@@ -12,31 +11,11 @@ import { TicketService } from './services/ticket.service';
 export class AppComponent implements OnInit {
   title = 'blacthorn-ui-test';
   showLoadingIndicator = true;
-  currentUrl: string;
 
-  constructor(
-    private ticketService: TicketService,
-    public router: Router,
-    location: PlatformLocation
-  ) {
-    this.router.events.subscribe((routerEvent: Event) => {
-      if (routerEvent instanceof NavigationStart) {
-        this.showLoadingIndicator = true;
-        location.onPopState(() => {
-          window.location.reload();
-        });
-        this.currentUrl = routerEvent.url.substring(
-          routerEvent.url.lastIndexOf('/') + 1
-        );
-      }
-      if (routerEvent instanceof NavigationEnd) {
-        this.showLoadingIndicator = false;
-      }
-      window.scrollTo(0, 0);
-    });
-  }
+  constructor(private ticketService: TicketService, public router: Router) {}
 
   ngOnInit(): void {
+    timer(2000).subscribe(() => (this.showLoadingIndicator = false));
     this.ticketService.retrieveTicket();
   }
 
