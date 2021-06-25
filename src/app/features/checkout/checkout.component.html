@@ -1,0 +1,341 @@
+<div class="back-div" routerLink="/">
+  <img src="assets/images/icon.png" class="back-img mr-1" />
+  <span class="back-text">Back</span>
+</div>
+<br />
+<br />
+
+<div class="container" *ngIf="ticketGroup.length > 0; else noTickets">
+  <div class="row">
+    <div class="col-65">
+      <div class="stepper">
+        <ul class="progress-bar">
+          <li class="active">
+            <span class="list-label"> Tickets </span>
+          </li>
+          <li>
+            <span class="list-label"> Sessions </span>
+          </li>
+          <li>
+            <span class="list-label"> Payment </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-65">
+      <div class="card">
+        <h5 class="title">Tickets</h5>
+        <div class="flex-div top-card">
+          <span class="vector-background">
+            <img src="assets/images/vector.png" />
+          </span>
+
+          <span class="ml-2">
+            <p class="mt-0 mb-0 rush">In a rush?</p>
+            <span class="instruction">
+              Register your tickets now or after checking out. Your choice.
+            </span>
+          </span>
+          <span class="later-fill">Fill this out later</span>
+        </div>
+      </div>
+      <form [formGroup]="ticketGroup">
+        <div
+          class="card form-card"
+          *ngFor="let ticketForm of ticketGroup.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <i class="arrow up"></i>
+          <ng-template #freeTicket>
+            <h5 class="title">
+              Attendee {{ i + 1 }} -
+              {{ ticketGroup.controls[i].controls.ticketName.value }}
+            </h5>
+            <div class="row">
+              <div class="col-45 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.firstName.invalid &&
+                      (ticketGroup.controls[i].controls.firstName.dirty ||
+                        ticketGroup.controls[i].controls.firstName.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    formControlName="firstName"
+                    id="firstName"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-45 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.lastName.invalid &&
+                      (ticketGroup.controls[i].controls.lastName.dirty ||
+                        ticketGroup.controls[i].controls.lastName.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-100 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.email.invalid &&
+                      (ticketGroup.controls[i].controls.email.dirty ||
+                        ticketGroup.controls[i].controls.email.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    formControlName="email"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-100 m-1">
+                <p class="question mb-0">
+                  Would you like to receive the branded connections and other
+                  e-communications from the us?
+                </p>
+                 
+                <label class="container"
+                  >Yes
+                  <input type="radio" checked="checked" name="{{ i }}" />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container"
+                  >No
+                  <input type="radio" name="{{ i }}" />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </ng-template>
+
+          <div
+            *ngIf="
+              ticketGroup.controls[i].controls.price.value > 0;
+              else freeTicket
+            "
+          >
+            <h5 class="title">
+              Attendee {{ i + 1 }} -
+              {{ ticketGroup.controls[i].controls.ticketName.value }}
+            </h5>
+            <div class="row">
+              <div class="col-45 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.firstName.invalid &&
+                      (ticketGroup.controls[i].controls.firstName.dirty ||
+                        ticketGroup.controls[i].controls.firstName.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    formControlName="firstName"
+                    id="firstName"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-45 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.lastName.invalid &&
+                      (ticketGroup.controls[i].controls.lastName.dirty ||
+                        ticketGroup.controls[i].controls.lastName.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-100 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      ticketGroup.controls[i].controls.email.invalid &&
+                      (ticketGroup.controls[i].controls.email.dirty ||
+                        ticketGroup.controls[i].controls.email.touched)
+                  }"
+                >
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    formControlName="email"
+                    required
+                  />
+                </span>
+              </div>
+              <div class="col-100 m-1">
+                <input
+                  type="text"
+                  placeholder="Job Title"
+                  formControlName="jobTitle"
+                />
+              </div>
+              <div class="col-100 m-1">
+                <input
+                  type="text"
+                  placeholder="Company"
+                  formControlName="company"
+                />
+              </div>
+              <div class="col-100 m-1 my-select-container">
+                <select id="country" class="dropdown">
+                  <option selected hidden>Country</option>
+                  <option
+                    *ngFor="let country of countries"
+                    value="{{ country }}"
+                  >
+                    {{ country }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form [formGroup]="bookGroup" *ngIf="bookGroup.length > 0">
+        <div
+          class="card form-card"
+          *ngFor="let ticketForm of bookGroup.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <h5 class="title">
+            {{ bookGroup.controls[i].controls.ticketName.value }}
+          </h5>
+          <div class="row">
+            <div class="col-45 m-1">
+              <span
+                [ngClass]="{
+                  'error-input':
+                    bookGroup.controls[i].controls.firstName.invalid &&
+                    (bookGroup.controls[i].controls.firstName.dirty ||
+                      bookGroup.controls[i].controls.firstName.touched)
+                }"
+              >
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  formControlName="firstName"
+                  id="firstName"
+                  required
+                />
+              </span>
+            </div>
+            <div class="col-45 m-1">
+              <span
+                [ngClass]="{
+                  'error-input':
+                    bookGroup.controls[i].controls.lastName.invalid &&
+                    (bookGroup.controls[i].controls.lastName.dirty ||
+                      bookGroup.controls[i].controls.lastName.touched)
+                }"
+              >
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  formControlName="lastName"
+                  required
+                />
+              </span>
+            </div>
+            <div class="col-100 m-1">
+              <span
+                [ngClass]="{
+                  'error-input':
+                    bookGroup.controls[i].controls.email.invalid &&
+                    (bookGroup.controls[i].controls.email.dirty ||
+                      bookGroup.controls[i].controls.email.touched)
+                }"
+              >
+                <input
+                  type="text"
+                  placeholder="Email"
+                  formControlName="email"
+                  required
+                />
+              </span>
+            </div>
+            <div class="col-100 m-1">
+              <input
+                type="text"
+                placeholder="Job Title"
+                formControlName="jobTitle"
+              />
+            </div>
+            <div class="col-100 m-1">
+              <input
+                type="text"
+                placeholder="Company"
+                formControlName="company"
+              />
+            </div>
+            <div class="col-100 m-1 my-select-container">
+              <select id="country" class="dropdown">
+                <option selected hidden>Country</option>
+                <option *ngFor="let country of countries" value="{{ country }}">
+                  {{ country }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-100 m-1">
+              <span
+                [ngClass]="{
+                  'error-input':
+                    bookGroup.controls[i].controls.deliveryAddress.invalid &&
+                    (bookGroup.controls[i].controls.deliveryAddress.dirty ||
+                      bookGroup.controls[i].controls.deliveryAddress.touched)
+                }"
+              >
+                <textarea
+                  type="text"
+                  formControlName="deliveryAddress"
+                  placeholder="Delivery Address"
+                ></textarea>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-30">
+      <app-order-summary [checkout]="true"></app-order-summary>
+    </div>
+  </div>
+</div>
+
+<ng-template #noTickets>
+  <div class="container placeholder-container">
+    <img class="placeholder" src="assets/images/empty-box.png" />
+    <h2>Sorry, you currently have no ticket</h2>
+
+    <div class="buyTicket" routerLink="/">Click here to get one</div>
+  </div>
+</ng-template>

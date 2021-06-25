@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row container-row">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.name }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Description</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.description }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Price</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.price | currency }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Quantity</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.email }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="pr-0"
+          >Actions</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row; let i = index" class="pr-0">
+          <button
+            mat-icon-button
+            color="accent"
+            class="btn-tbl-edit"
+            (click)="$event.stopPropagation()"
+            (click)="editCall(row)"
+          >
+            <mat-icon aria-label="Edit" class="col-white">edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="editCall(row)"
+        [style.cursor]="'pointer'"
+        matRipple
+      >
+      </mat-row>
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1, 5, 10]">
+    </mat-paginator>
+  </div>
+</div>

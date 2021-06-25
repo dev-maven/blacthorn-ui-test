@@ -1,0 +1,37 @@
+.summary-card {
+  padding-left: 25px;
+
+  .promo-code {
+    color: #0070D2;
+    cursor: pointer;
+  }
+  .remove {
+    color: #EB7092;
+    border: 1px solid #EB7092;
+    padding: 3px 5px;
+    border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 2px;
+    font-weight: 600;
+    font-style: normal;
+  }
+}
+
+.checkout-button {
+  height: 40px;
+  background: #0EB58A;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 10px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

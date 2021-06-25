@@ -1,0 +1,171 @@
+<div class="container">
+  <div class="row container-row">
+    <div class="card col-65">
+      <div
+        class="ticket-item border-line"
+        *ngFor="let ticket of ticketService.tickets"
+      >
+        <h5 class="title mt-2">{{ ticket.title }}</h5>
+        <p class="mt-0 mb-0" *ngIf="ticket.description">
+          {{ ticket.description }}
+        </p>
+
+        <p
+          class="short-deadline"
+          *ngIf="ticket.deadline.includes('hour'); else longDeadline"
+        >
+          Sales end in {{ ticket.deadline }}
+        </p>
+
+        <ng-template #longDeadline>
+          <p class="long-deadline">Sales end in {{ ticket.deadline }}</p>
+        </ng-template>
+        <div class="flex-div">
+          <span class="price mr-2" *ngIf="ticket.price > 0; else freeEvent">{{
+            ticket.price | currency
+          }}</span>
+
+          <ng-template #freeEvent>
+            <span class="price mr-2">Free</span>
+          </ng-template>
+
+          <span
+            [ngClass]="{
+              'red-select':
+                ticketService.showWaitList(ticket.title, 'waitList')?.total > 0
+            }"
+          >
+            <div class="my-select-container">
+              <select
+                (change)="ticketService.addTicket($event.target.value, ticket)"
+                id="quantity"
+                name="quantity"
+                class="dropdown"
+              >
+                <option
+                  *ngFor="let quantity of quantities"
+                  value="{{ quantity }}"
+                  [selected]="
+                    quantity === ticketService.getTicketQuantity(ticket)
+                  "
+                >
+                  {{ quantity }}
+                </option>
+              </select>
+            </div>
+          </span>
+        </div>
+
+        <div
+          class="notification"
+          *ngIf="
+            !ticketService.showWaitList(ticket.title, 'waitList') &&
+            !ticketService.showWaitList(ticket.title, 'confirmedWaitList')
+          "
+        >
+          Only {{ ticket.availableTickets }} ticket(s) available.
+        </div>
+        <div
+          *ngIf="
+            ticketService.showWaitList(ticket.title, 'waitList');
+            let waitList
+          "
+        >
+          <div class="notification" *ngIf="waitList.total > 0">
+            {{ waitList.added }} Ticket(s) Added to cart. Want to join the
+            waitlist for {{ waitList.total }} ticket(s)
+            <a
+              *ngIf="
+                !ticketService.showWaitList(ticket.title, 'confirmedWaitList')
+              "
+              (click)="ticketService.confirmWaitList(waitList)"
+              >Join Waitlist</a
+            >
+          </div>
+        </div>
+
+        <div
+          *ngIf="
+            ticketService.showWaitList(ticket.title, 'confirmedWaitList');
+            let waitList
+          "
+        >
+          <div class="notification" *ngIf="waitList.total > 0">
+            {{ waitList.total }} Ticket(s) waitlisted.
+            <a
+              (click)="
+                ticketService.removeTicket(waitList, 'confirmedWaitList')
+              "
+              >Cancel</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-item">
+        <h5 class="title mt-2 mb-0">Donate</h5>
+        <p class="mt-0">Access to arts is vital. Pay what you can.</p>
+        <p class="donate-text mb-0">I want to donate</p>
+        <div class="donations">
+          <span
+            *ngFor="let price of donationPrices"
+            [ngClass]="{
+              'donation-selected': ticketService.selectedDonation == price
+            }"
+            (click)="ticketService.addDonation(price)"
+            class="donation-price"
+            >{{ price | currency: "USD":"symbol":"1.0-0" }}</span
+          >
+          <span class="custom-donation">
+            <input
+              type="number"
+              name="amount"
+              [(ngModel)]="ticketService.selectedDonation"
+              placeholder="Enter amount"
+              (keyup)="
+                ticketService.addDonation(ticketService.selectedDonation)
+              "
+            />
+          </span>
+        </div>
+      </div>
+
+      <div class="flex-div mt-2">
+        <img class="advert-book mr-2" src="assets/images/book.png" />
+        <span>
+          <h5 class="title">Book: Good Strategy - Bad Strategy</h5>
+          <span>Learn from the experts of business process management</span>
+
+          <div class="flex-div mt-2">
+            <span class="price mr-2">{{ bookPrice | currency }}</span>
+
+            <span>
+              <div class="my-select-container">
+                <select
+                  id="quantity"
+                  (change)="ticketService.addBook($event.target.value)"
+                  name="quantity"
+                  class="dropdown"
+                >
+                  <option
+                    *ngFor="let quantity of quantities"
+                    value="{{ quantity }}"
+                    [selected]="
+                      quantity === ticketService.getTicketQuantity(bookObj)
+                    "
+                  >
+                    {{ quantity }}
+                  </option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-30">
+      <app-order-summary></app-order-summary>
+    </div>
+  </div>
+</div>

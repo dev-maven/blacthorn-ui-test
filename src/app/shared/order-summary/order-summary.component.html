@@ -1,0 +1,101 @@
+<div class="card summary-card">
+  <div class="border-line pb-3">
+    <h5 class="title">Order Summary</h5>
+    <div *ngIf="ticketService.selectedTickets.length > 0">
+      <div
+        class="div-flex bought-ticket mb-1"
+        *ngFor="let ticket of ticketService.selectedTickets"
+      >
+        <div *ngIf="ticket.title !== 'Donation'; else donation">
+          <span>{{ ticket.total }}x {{ ticket.title }}</span>
+          <span class="align-right">
+            {{ ticket.price | currency }}
+            <span
+              *ngIf="!checkout"
+              class="remove"
+              (click)="ticketService.removeTicket(ticket, 'selectedTickets')"
+              >X</span
+            >
+          </span>
+        </div>
+
+        <ng-template #donation>
+          <span>{{ ticket.title }}</span>
+          <span class="align-right"
+            >{{ ticket.price | currency }}
+
+            <span
+              *ngIf="!checkout"
+              class="remove"
+              (click)="ticketService.removeTicket(ticket, 'selectedTickets')"
+              >X</span
+            >
+          </span>
+        </ng-template>
+      </div>
+
+      <div *ngIf="checkout" class="promo-code" (click)="goBack()">Edit</div>
+    </div>
+
+    <div *ngIf="ticketService.confirmedWaitList.length > 0">
+      <div
+        class="div-flex waited-ticket mb-1"
+        *ngFor="let ticket of ticketService.confirmedWaitList"
+      >
+        <span>{{ ticket.total }}x {{ ticket.title }} <br />Waitlisted</span>
+        <span class="align-right"
+          >{{ ticket.price | currency }}
+          <span
+            class="remove"
+            (click)="ticketService.removeTicket(ticket, 'confirmedWaitList')"
+            >X</span
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="border-line pb-3">
+    <div class="div-flex mb-1 mt-2">
+      <span>Subtotal</span>
+      <span class="align-right">{{ ticketService.total | currency }}</span>
+    </div>
+    <div class="div-flex">
+      <span>Taxes</span>
+      <span class="align-right">{{ ticketService.tax | currency }}</span>
+    </div>
+  </div>
+
+  <div class="div-flex mb-3 fw-700 mt-2">
+    <span>Total</span>
+    <span class="align-right">{{
+      ticketService.total + ticketService.tax | currency
+    }}</span>
+  </div>
+
+  <a class="promo-code" (click)="promoForm = !promoForm">Have a promo code?</a>
+  <div class="flex-div promo-div mt-1 mb-1" *ngIf="promoForm == true">
+    <span>
+      <input type="text" placeholder="Promo Code" />
+    </span>
+    <span class="apply-button">Apply</span>
+  </div>
+</div>
+
+<div
+  (click)="ticketService.checkout()"
+  class="checkout-button card summary-card"
+  *ngIf="!checkout"
+  [ngClass]="{
+    'button-disabled': !ticketService.selectedTickets.length > 0
+  }"
+>
+  Checkout
+</div>
+
+<div
+  (click)="ticketService.checkout()"
+  class="checkout-button card summary-card button-disabled"
+  *ngIf="checkout"
+>
+  Review Sessions
+</div>
