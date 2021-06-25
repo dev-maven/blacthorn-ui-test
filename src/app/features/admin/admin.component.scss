@@ -1,0 +1,128 @@
+.module-header {
+        font-weight: 600;
+        font-size: 24px;
+        text-align: center;
+}
+
+.add-button {
+    margin: 10px 10px 0px auto;
+    display: block;
+}
+
+ .styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+ thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+ th,
+ td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+td:first-child {
+  font-weight: 600;
+}
+
+ tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+ tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+ tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+
+}
+
+.new {
+  background: #225ea4;
+  display: block;
+  margin: 10px 10px 10px auto;
+}
+
+.table-edit {
+  background: transparent;
+  border: 1px solid #399f48;
+  color: #399f48;
+  background: transparent;
+}
+
+.fade-in {
+  animation: fadeIn linear 1s;
+  -webkit-animation: fadeIn linear 1s;
+  -moz-animation: fadeIn linear 1s;
+  -o-animation: fadeIn linear 1s;
+  -ms-animation: fadeIn linear 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .description {
+    display: none;
+  }
+}
+

@@ -9,6 +9,9 @@
         <p class="mt-0 mb-0" *ngIf="ticket.description">
           {{ ticket.description }}
         </p>
+        <p class="mt-0 mb-0 opacity-reduce" *ngIf="!ticket.description">
+          No Description
+        </p>
 
         <p
           class="short-deadline"

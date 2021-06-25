@@ -1,24 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatFormField } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
 import { AdminRoutingModule } from './admin-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 
+export const customCurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: true,
+  allowZero: true,
+  decimal: '.',
+  precision: 2,
+  prefix: '$ ',
+  suffix: '',
+  thousands: ',',
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL,
+};
 @NgModule({
   imports: [
     CommonModule,
-    MatTableModule,
-    MatFormField,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatDialogModule,
     AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   declarations: [AdminComponent],
 })

@@ -9,6 +9,14 @@
   vertical-align: middle;
 }
 
+input[type=text] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  padding: 5px;
+}
+
 
 
 .back-text {
@@ -132,130 +140,14 @@
 
 }
 
-  .form-card {
-        input[type=text],
-        select,
-        textarea {
-          width: 100%;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          padding: 10px;
-          resize: vertical;
-        }
-       
 
-        .question {
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 22px;
-        }
 
-        .container {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 14px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-        .container input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-        }
-
-        .checkmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 20px;
-          width: 20px;
-          background-color: transparent;
-          border-radius: 50%;
-          border: 1px solid #c4c4c4;
-        }
-
-        // .container:hover input~.checkmark {
-        //   background-color: #ccc;
-        // }
-
-        .container input:checked~.checkmark {
-          background-color: transparent;
-          border: 1px solid #c4c4c4;
-        }
-
-        .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-
-        .container input:checked~.checkmark:after {
-          display: block;
-        }
-
-        .container .checkmark:after {
-          top: 4px;
-          left: 4px;
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #0EB58A;
-        }
-
-        
-  }
-
-  .active, .form-card:hover {
-
-  }
 
   
 
 
 
-  .my-select-container {
-    position: relative;
 
-    .dropdown {
-      -webkit-appearance: none;
-      padding-left: 0.5rem;
-      padding-right: 1.5rem;
-      height: 36px;
-      width: 100%;
-      border: 1px solid #D4D4D4;
-      border-radius: 0.25rem;
-      background-color: rgb(255, 255, 255);
-    }
-  }
-
-  .my-select-container:before {
-    border-bottom: 5px solid black;
-    top: calc((1.75rem / 2) - 6px);
-    opacity: 0;
-  }
-
-  .my-select-container:before,
-  .my-select-container:after {
-    position: absolute;
-    content: '';
-    display: block;
-    right: 0.5rem;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    pointer-events: none;
-  }
-
-  .my-select-container:after {
-    border-top: 6px solid #706E6B;
-    bottom: 15px;
-  }
 
   .top-card {
       padding: 10px 25px;
@@ -277,12 +169,7 @@
     -webkit-transform: rotate(45deg);
   }
 
-    .error-input {
-        input, textarea {
-        border: 1px solid #EB7092 !important;
 
-        }
-    }
 
     .placeholder-container {
         text-align: center;

@@ -3,8 +3,28 @@
     width="40"
     alt="Blackthorn Logo"
     src="assets/images/blackthorn_logo.png"
+    routerLink="/"
   />
   <div class="spacer"></div>
+
+  <button
+    *ngIf="!router.url.includes('admin')"
+    (click)="goToAdmin()"
+    class="edit-button mr-2"
+  >
+    Ticket Management
+  </button>
+  <button
+    *ngIf="router.url.includes('admin')"
+    (click)="goToClient()"
+    class="edit-button mr-2"
+  >
+    Buy Ticket
+  </button>
+</div>
+
+<div *ngIf="showLoadingIndicator" class="page-loader-wrapper">
+  <app-page-loader></app-page-loader>
 </div>
 
 <div class="content" role="main">

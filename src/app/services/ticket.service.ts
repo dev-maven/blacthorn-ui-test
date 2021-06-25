@@ -184,6 +184,11 @@ export class TicketService {
     if (waitList) {
       this.confirmedWaitList = JSON.parse(waitList);
     }
+
+    const eventTickets = localStorage.getItem('eventTickets');
+    if (eventTickets) {
+      this.tickets = JSON.parse(eventTickets);
+    }
     this.getTotal();
   }
 
@@ -193,5 +198,16 @@ export class TicketService {
       localStorage.setItem('waitList', JSON.stringify(this.confirmedWaitList));
       this.router.navigateByUrl('/checkout');
     }
+  }
+
+  updateTicket(title: string, newValue: Ticket): void {
+    const index = this.tickets.findIndex((x) => x.title === title);
+    this.tickets[index] = newValue;
+    localStorage.setItem('eventTickets', JSON.stringify(this.tickets));
+  }
+
+  addNewTicket(newValue: Ticket): void {
+    this.tickets.push(newValue);
+    localStorage.setItem('eventTickets', JSON.stringify(this.tickets));
   }
 }
