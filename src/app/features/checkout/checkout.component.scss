@@ -28,6 +28,33 @@ input[type=text] {
 
 }
 
+  .form-card {
+    height: 23rem;
+    transition:
+    height 0.5s,
+    transform 0.5s;
+  }
+
+.parent-div {
+  cursor: pointer;
+}
+
+.form-wrapper {
+  cursor: not-allowed;
+}
+
+
+.card.form-card.ng-pristine.collapse-card {
+  height: 60px;
+  overflow: hidden;
+    .up {
+      transform: rotate(45deg);
+      height: unset;
+    }
+}
+
+
+
 .rush {
   font-size: 15px;
 }
@@ -54,7 +81,6 @@ input[type=text] {
 
   li {
     list-style-type: none;
-    float: left;
     width: 33.33%;
     position: relative;
     text-align: center;
@@ -153,6 +179,8 @@ input[type=text] {
       padding: 10px 25px;
   }
 
+
+
   .arrow {
   border: solid #706E6B;
   border-width: 0 2px 2px 0;
@@ -178,6 +206,16 @@ input[type=text] {
       .top-card {
           display: block;
           padding: 2px;
+      }
+
+      .form-card {
+        height: 28rem;
+      }
+
+      .form-card {
+        .title {
+          font-size: 11px;
+        }
       }
     }
 

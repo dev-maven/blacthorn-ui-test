@@ -43,85 +43,88 @@
       </div>
       <form [formGroup]="ticketGroup">
         <div
-          class="card form-card"
+          class="card form-card parent-div"
           *ngFor="let ticketForm of ticketGroup.controls; let i = index"
           [formGroupName]="i"
+          (click)="toggleClass($event, 'collapse-card')"
         >
           <i class="arrow up"></i>
           <ng-template #freeTicket>
-            <h5 class="title">
-              Attendee {{ i + 1 }} -
-              {{ ticketGroup.controls[i].controls.ticketName.value }}
-            </h5>
-            <div class="row">
-              <div class="col-45 m-1">
-                <span
-                  [ngClass]="{
-                    'error-input':
-                      ticketGroup.controls[i].controls.firstName.invalid &&
-                      (ticketGroup.controls[i].controls.firstName.dirty ||
-                        ticketGroup.controls[i].controls.firstName.touched)
-                  }"
-                >
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    formControlName="firstName"
-                    id="firstName"
-                    required
-                  />
-                </span>
-              </div>
-              <div class="col-45 m-1">
-                <span
-                  [ngClass]="{
-                    'error-input':
-                      ticketGroup.controls[i].controls.lastName.invalid &&
-                      (ticketGroup.controls[i].controls.lastName.dirty ||
-                        ticketGroup.controls[i].controls.lastName.touched)
-                  }"
-                >
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    formControlName="lastName"
-                    required
-                  />
-                </span>
-              </div>
-              <div class="col-100 m-1">
-                <span
-                  [ngClass]="{
-                    'error-input':
-                      ticketGroup.controls[i].controls.email.invalid &&
-                      (ticketGroup.controls[i].controls.email.dirty ||
-                        ticketGroup.controls[i].controls.email.touched)
-                  }"
-                >
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    formControlName="email"
-                    required
-                  />
-                </span>
-              </div>
-              <div class="col-100 m-1">
-                <p class="question mb-0">
-                  Would you like to receive the branded connections and other
-                  e-communications from the us?
-                </p>
-                 
-                <label class="container"
-                  >Yes
-                  <input type="radio" checked="checked" name="{{ i }}" />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="container"
-                  >No
-                  <input type="radio" name="{{ i }}" />
-                  <span class="checkmark"></span>
-                </label>
+            <div class="form-wrapper">
+              <h5 class="title">
+                Attendee {{ i + 1 }} -
+                {{ ticketGroup.controls[i].controls.ticketName.value }}
+              </h5>
+              <div class="row">
+                <div class="col-45 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.firstName.invalid &&
+                        (ticketGroup.controls[i].controls.firstName.dirty ||
+                          ticketGroup.controls[i].controls.firstName.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      formControlName="firstName"
+                      id="firstName"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-45 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.lastName.invalid &&
+                        (ticketGroup.controls[i].controls.lastName.dirty ||
+                          ticketGroup.controls[i].controls.lastName.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      formControlName="lastName"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-100 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.email.invalid &&
+                        (ticketGroup.controls[i].controls.email.dirty ||
+                          ticketGroup.controls[i].controls.email.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      formControlName="email"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-100 m-1">
+                  <p class="question mb-0">
+                    Would you like to receive the branded connections and other
+                    e-communications from the us?
+                  </p>
+                   
+                  <label class="container"
+                    >Yes
+                    <input type="radio" checked="checked" name="{{ i }}" />
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container"
+                    >No
+                    <input type="radio" name="{{ i }}" />
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
               </div>
             </div>
           </ng-template>
@@ -132,18 +135,113 @@
               else freeTicket
             "
           >
+            <div class="form-wrapper">
+              <h5 class="title">
+                Attendee {{ i + 1 }} -
+                {{ ticketGroup.controls[i].controls.ticketName.value }}
+              </h5>
+              <div class="row">
+                <div class="col-45 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.firstName.invalid &&
+                        (ticketGroup.controls[i].controls.firstName.dirty ||
+                          ticketGroup.controls[i].controls.firstName.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      formControlName="firstName"
+                      id="firstName"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-45 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.lastName.invalid &&
+                        (ticketGroup.controls[i].controls.lastName.dirty ||
+                          ticketGroup.controls[i].controls.lastName.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      formControlName="lastName"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-100 m-1">
+                  <span
+                    [ngClass]="{
+                      'error-input':
+                        ticketGroup.controls[i].controls.email.invalid &&
+                        (ticketGroup.controls[i].controls.email.dirty ||
+                          ticketGroup.controls[i].controls.email.touched)
+                    }"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      formControlName="email"
+                      required
+                    />
+                  </span>
+                </div>
+                <div class="col-100 m-1">
+                  <input
+                    type="text"
+                    placeholder="Job Title"
+                    formControlName="jobTitle"
+                  />
+                </div>
+                <div class="col-100 m-1">
+                  <input
+                    type="text"
+                    placeholder="Company"
+                    formControlName="company"
+                  />
+                </div>
+                <div class="col-100 m-1 my-select-container">
+                  <select id="country" class="dropdown">
+                    <option selected hidden>Country</option>
+                    <option
+                      *ngFor="let country of countries"
+                      value="{{ country }}"
+                    >
+                      {{ country }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form [formGroup]="bookGroup" *ngIf="bookGroup.length > 0">
+        <div
+          class="card form-card"
+          *ngFor="let ticketForm of bookGroup.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div class="form-wrapper">
             <h5 class="title">
-              Attendee {{ i + 1 }} -
-              {{ ticketGroup.controls[i].controls.ticketName.value }}
+              {{ bookGroup.controls[i].controls.ticketName.value }}
             </h5>
             <div class="row">
               <div class="col-45 m-1">
                 <span
                   [ngClass]="{
                     'error-input':
-                      ticketGroup.controls[i].controls.firstName.invalid &&
-                      (ticketGroup.controls[i].controls.firstName.dirty ||
-                        ticketGroup.controls[i].controls.firstName.touched)
+                      bookGroup.controls[i].controls.firstName.invalid &&
+                      (bookGroup.controls[i].controls.firstName.dirty ||
+                        bookGroup.controls[i].controls.firstName.touched)
                   }"
                 >
                   <input
@@ -159,9 +257,9 @@
                 <span
                   [ngClass]="{
                     'error-input':
-                      ticketGroup.controls[i].controls.lastName.invalid &&
-                      (ticketGroup.controls[i].controls.lastName.dirty ||
-                        ticketGroup.controls[i].controls.lastName.touched)
+                      bookGroup.controls[i].controls.lastName.invalid &&
+                      (bookGroup.controls[i].controls.lastName.dirty ||
+                        bookGroup.controls[i].controls.lastName.touched)
                   }"
                 >
                   <input
@@ -176,9 +274,9 @@
                 <span
                   [ngClass]="{
                     'error-input':
-                      ticketGroup.controls[i].controls.email.invalid &&
-                      (ticketGroup.controls[i].controls.email.dirty ||
-                        ticketGroup.controls[i].controls.email.touched)
+                      bookGroup.controls[i].controls.email.invalid &&
+                      (bookGroup.controls[i].controls.email.dirty ||
+                        bookGroup.controls[i].controls.email.touched)
                   }"
                 >
                   <input
@@ -214,111 +312,23 @@
                   </option>
                 </select>
               </div>
-            </div>
-          </div>
-        </div>
-      </form>
 
-      <form [formGroup]="bookGroup" *ngIf="bookGroup.length > 0">
-        <div
-          class="card form-card"
-          *ngFor="let ticketForm of bookGroup.controls; let i = index"
-          [formGroupName]="i"
-        >
-          <h5 class="title">
-            {{ bookGroup.controls[i].controls.ticketName.value }}
-          </h5>
-          <div class="row">
-            <div class="col-45 m-1">
-              <span
-                [ngClass]="{
-                  'error-input':
-                    bookGroup.controls[i].controls.firstName.invalid &&
-                    (bookGroup.controls[i].controls.firstName.dirty ||
-                      bookGroup.controls[i].controls.firstName.touched)
-                }"
-              >
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  formControlName="firstName"
-                  id="firstName"
-                  required
-                />
-              </span>
-            </div>
-            <div class="col-45 m-1">
-              <span
-                [ngClass]="{
-                  'error-input':
-                    bookGroup.controls[i].controls.lastName.invalid &&
-                    (bookGroup.controls[i].controls.lastName.dirty ||
-                      bookGroup.controls[i].controls.lastName.touched)
-                }"
-              >
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  formControlName="lastName"
-                  required
-                />
-              </span>
-            </div>
-            <div class="col-100 m-1">
-              <span
-                [ngClass]="{
-                  'error-input':
-                    bookGroup.controls[i].controls.email.invalid &&
-                    (bookGroup.controls[i].controls.email.dirty ||
-                      bookGroup.controls[i].controls.email.touched)
-                }"
-              >
-                <input
-                  type="text"
-                  placeholder="Email"
-                  formControlName="email"
-                  required
-                />
-              </span>
-            </div>
-            <div class="col-100 m-1">
-              <input
-                type="text"
-                placeholder="Job Title"
-                formControlName="jobTitle"
-              />
-            </div>
-            <div class="col-100 m-1">
-              <input
-                type="text"
-                placeholder="Company"
-                formControlName="company"
-              />
-            </div>
-            <div class="col-100 m-1 my-select-container">
-              <select id="country" class="dropdown">
-                <option selected hidden>Country</option>
-                <option *ngFor="let country of countries" value="{{ country }}">
-                  {{ country }}
-                </option>
-              </select>
-            </div>
-
-            <div class="col-100 m-1">
-              <span
-                [ngClass]="{
-                  'error-input':
-                    bookGroup.controls[i].controls.deliveryAddress.invalid &&
-                    (bookGroup.controls[i].controls.deliveryAddress.dirty ||
-                      bookGroup.controls[i].controls.deliveryAddress.touched)
-                }"
-              >
-                <textarea
-                  type="text"
-                  formControlName="deliveryAddress"
-                  placeholder="Delivery Address"
-                ></textarea>
-              </span>
+              <div class="col-100 m-1">
+                <span
+                  [ngClass]="{
+                    'error-input':
+                      bookGroup.controls[i].controls.deliveryAddress.invalid &&
+                      (bookGroup.controls[i].controls.deliveryAddress.dirty ||
+                        bookGroup.controls[i].controls.deliveryAddress.touched)
+                  }"
+                >
+                  <textarea
+                    type="text"
+                    formControlName="deliveryAddress"
+                    placeholder="Delivery Address"
+                  ></textarea>
+                </span>
+              </div>
             </div>
           </div>
         </div>

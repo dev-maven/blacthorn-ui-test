@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TicketService } from 'src/app/services/ticket.service';
 
@@ -22,7 +22,11 @@ export class CheckoutComponent implements OnInit {
     'Nigeria',
     'Switzerland',
   ];
-  constructor(private fb: FormBuilder, private ticketService: TicketService) {}
+  constructor(
+    private fb: FormBuilder,
+    private ticketService: TicketService,
+    private renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     this.ticketGroup = this.fb.array([]);
@@ -56,6 +60,16 @@ export class CheckoutComponent implements OnInit {
         price: [ticket.price],
       })
     );
+  }
+
+  toggleClass(event: any, className: string): void {
+    const hasClass = event.target.classList.contains(className);
+
+    if (hasClass) {
+      this.renderer.removeClass(event.target, className);
+    } else {
+      this.renderer.addClass(event.target, className);
+    }
   }
 
   populateBookForm(ticket): void {
