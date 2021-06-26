@@ -219,6 +219,13 @@ input[type=text] {
       }
     }
 
+        @media screen and (max-width: 300px) {
+
+          .top-card {
+            height: 12rem;
+          }
+        }
+
 
 
 
