@@ -229,7 +229,10 @@
           class="card form-card book-card"
           *ngFor="let ticketForm of bookGroup.controls; let i = index"
           [formGroupName]="i"
+          (click)="toggleClass($event, 'collapse-card')"
         >
+          <i class="arrow up"></i>
+
           <div class="form-wrapper">
             <h5 class="title">
               {{ bookGroup.controls[i].controls.ticketName.value }}
