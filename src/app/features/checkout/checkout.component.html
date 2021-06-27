@@ -226,7 +226,7 @@
 
       <form [formGroup]="bookGroup" *ngIf="bookGroup.length > 0">
         <div
-          class="card form-card"
+          class="card form-card book-card"
           *ngFor="let ticketForm of bookGroup.controls; let i = index"
           [formGroupName]="i"
         >
