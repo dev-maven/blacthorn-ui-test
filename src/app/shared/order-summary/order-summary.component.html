@@ -1,4 +1,9 @@
-<div class="card summary-card">
+<div
+  class="card summary-card"
+  [ngClass]="{
+    'full-width': !checkout
+  }"
+>
   <div class="border-line pb-3">
     <h5 class="title">Order Summary</h5>
     <div *ngIf="ticketService.selectedTickets.length > 0">
